@@ -8,6 +8,6 @@ export const environment = {
   walletUrl: '//138.197.194.220:3000',
   appName: 'EOS Tracker',
   logoUrl: '/assets/logo.png',
-  apiUrl: '//localhost:8000',
-  blockchainUrl: '//localhost:8877'
+  apiUrl: '//103.80.170.199:8000',
+  blockchainUrl: '//103.80.170.199:8888'
 };

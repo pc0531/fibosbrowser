@@ -2,134 +2,184 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">{{ 'Dashboard' | translate }}</h1>
+				<!-- <h1 class="page-header">{{ 'Dashboard' | translate }}</h1> -->
+				<h1 class="page-header">首页</h1>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
 		<!-- /.row -->
 		<div class="row">
-			<div class="col-lg-3 col-md-6">
+			<div class="col-lg-2 col-md-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-th fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
+							<div class="col-xs-12 text-center">
 								<div class="medium">{{stats[0]| number}}</div>
-								<div>{{ 'Blocks' | translate }}</div>
+								<div>FO价格</div>
 							</div>
 						</div>
 					</div>
-					<a href="#" routerLink="/blocks">
+					<!-- <a href="#" routerLink="/blocks">
 						<div class="panel-footer">
 							<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
 							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 							<div class="clearfix"></div>
 						</div>
-					</a>
+					</a> -->
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-green">
+			<div class="col-lg-2 col-md-4">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-tasks fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="medium">{{stats[1]| number}}</div>
-								<div>{{ 'Transactions' | translate }}</div>
+							<div class="col-xs-12 text-center">
+								<div class="medium">{{blocksChain.last_irreversible_block_num}}</div>
+								<div>不可逆区块</div>
 							</div>
 						</div>
 					</div>
-					<a href="#" routerLink="/transactions">
-						<div class="panel-footer">
-							<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
+					<!-- <a href="#" routerLink="/blocks">
+								<div class="panel-footer">
+									<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
+									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+									<div class="clearfix"></div>
+								</div>
+							</a> -->
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-yellow">
+
+			<div class="col-lg-2 col-md-4">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-3">
-								<i class="fa fa-users fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="medium">{{stats[2]| number}}</div>
-								<div>{{ 'Accounts' | translate }}</div>
+							<div class="col-xs-12 text-center">
+								<div class="medium">{{blocksChain.head_block_num}}</div>
+								<div>最新区块</div>
 							</div>
 						</div>
 					</div>
-					<a href="#" routerLink="/accounts">
-						<div class="panel-footer">
-							<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
-							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-							<div class="clearfix"></div>
-						</div>
-					</a>
+					<!-- <a href="#" routerLink="/blocks">
+								<div class="panel-footer">
+									<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
+									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+									<div class="clearfix"></div>
+								</div>
+							</a> -->
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="panel panel-red">
+
+			<div class="col-lg-2 col-md-4">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-xs-3">
+							<div class="col-xs-12 text-center">
+								<div class="medium">最新区块时间</div>
+								<div>{{blocksChain.head_block_time |date:'yyyy-MM-dd hh:mm:ss'}}</div>
+							</div>
+						</div>
+					</div>
+					<!-- <a href="#" routerLink="/blocks">
+										<div class="panel-footer">
+											<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
+											<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+											<div class="clearfix"></div>
+										</div>
+									</a> -->
+				</div>
+			</div>
+
+
+			<div class="col-lg-2 col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<div class="medium">节点数量</div>
+								<div>总计：{{stats[1]| number}} / 在线：{{stats[2]| number}}</div>
+							</div>
+						</div>
+					</div>
+					<!-- <a href="#" routerLink="/blocks">
+							<div class="panel-footer">
+								<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
+								<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+								<div class="clearfix"></div>
+							</div>
+						</a> -->
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<!-- <div class="col-xs-3">
 								<i class="fa fa-files-o fa-5x"></i>
-							</div>
-							<div class="col-xs-9 text-right">
-								<div class="medium">{{stats[3]| number}}</div>
-								<div>{{ 'Actions' | translate }}</div>
+							</div> -->
+							<div class="col-xs-12 text-center">
+								<div class="medium">{{stats[3]}}</div>
+								<div>网络投票数</div>
 							</div>
 						</div>
 					</div>
-					<a href="#" routerLink="/actions">
+					<!-- <a href="#" routerLink="/actions">
 						<div class="panel-footer">
 							<span class="pull-left">{{ 'ViewDetails' | translate }}</span>
 							<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 							<div class="clearfix"></div>
 						</div>
-					</a>
+					</a> -->
 				</div>
 			</div>
 		</div>
 		<!-- /.row -->
 
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						{{ 'Blocks' | translate }}
+						节点列表
 
-						<div class="pull-right">
+						<!-- <div class="pull-right">
 							<button type="button" routerLink="/blocks" class="btn btn-outline btn-info btn-xs">
 								{{ 'ViewAll' | translate }}
 							</button>
-						</div>
+						</div> -->
 
 					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
-						<app-loading *ngIf="!blocks"></app-loading>
-						<div *ngIf="blocks" class="table-responsive">
+						<app-loading *ngIf="!producers"></app-loading>
+						<div *ngIf="producers" class="table-responsive">
 							<table class="table table-striped">
 								<thead>
-								<tr>
-									<th>#</th>
-									<th>{{ 'Time' | translate }}</th>
-									<th>{{ 'Producer' | translate }}</th>
-								</tr>
+									<tr>
+										<th>排名</th>
+										<th>节点名</th>
+										<th>账号</th>
+										<th>投票比例</th>
+										<th>投票数量</th>
+										<th>位置</th>
+										<th>状态</th>
+									</tr>
 								</thead>
 								<tbody>
-								<tr *ngFor="let block of blocks">
-									<td><a routerLink="/blocks/{{block.block_num}}">{{block.block_num}}</a></td>
-									<td>{{block.createdAt.sec * 1000 | date:'medium'}}</td>
-									<td><a routerLink="/accounts/{{block.block.producer}}">{{block.block.producer}}</a></td>
-								</tr>
+									<tr *ngFor="let producer of producers">
+										<td>{{producer.num}}</td>
+										<td>{{producer.owner}}</td>
+										<td>{{producer.owner}}</td>
+										<td>{{producer.vote_rate}}</td>
+										<td>{{producer.total_votes}}</td>
+										<td>{{producer.location}}</td>
+										<td style="position:relative">
+											<span style="opacity:0">{{producer.is_active}}</span>
+											{{ producer.is_active} == 1 ?
+											<div style="position: absolute;top: 36%;width:10px;height:10px;background:#5eba00;border-radius: 50%;">
+											</div> :
+											<div style="position: absolute;top: 36%;width:10px;height:10px;background:black;border-radius: 50%;">
+											</div>
+											}
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -139,45 +189,6 @@
 				</div>
 				<!-- /.panel -->
 			</div>
-			<!-- /.col-lg-6 -->
-			<div class="col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						{{ 'Transactions' | translate }}
-
-						<div class="pull-right">
-							<button type="button" routerLink="/transactions" class="btn btn-outline btn-info btn-xs">
-								{{ 'ViewAll' | translate }}
-							</button>
-						</div>
-					</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<app-loading *ngIf="!transactions"></app-loading>
-						<div *ngIf="transactions" class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-								<tr>
-									<th>#</th>
-									<th>{{ 'Time' | translate }}</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr *ngFor="let transaction of transactions">
-									<td><a routerLink="/transactions/{{transaction.trx_id}}">{{transaction.trx_id | slice:0:32}}...</a>
-									</td>
-									<td>{{transaction.createdAt.sec * 1000 | date:'medium'}}</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- /.table-responsive -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-				<!-- /.panel -->
-			</div>
-			<!-- /.col-lg-6 -->
 		</div>
 
 		<!-- /.row -->

@@ -26,17 +26,17 @@
 							<table class="table table-striped">
 								<thead>
 								<tr>
-									<th>#</th>
-									<th>{{ 'BlockId' | translate }}</th>
+									<!-- <th>{{ 'BlockId' | translate }}</th>
 									<th>{{ 'CreatedAt' | translate }}</th>
 									<th>{{ 'Expiration' | translate }}</th>
-									<th>{{ 'Actions' | translate }}</th>
+									<th>{{ 'Actions' | translate }}</th> -->
+									<th></th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr *ngFor="let transaction of transactions">
-									<td><a routerLink="/transactions/{{transaction.trx_id}}">{{transaction.trx_id|slice:0:32}}...</a></td>
-									<td><a routerLink="/search" [queryParams]="{q: transaction.transaction_header.ref_block_num}">{{transaction.transaction_header.ref_block_num}}...</a></td>
+									<td><a routerLink="/transactions/{{transaction._id.$id}}">{{transaction.trx_id|slice:0:32}}...</a></td>
+									<td><a routerLink="/search" [queryParams]="{q: transaction.ref_block_num}">{{transaction.ref_block_num}}...</a></td>
 									<td>{{transaction.createdAt.sec * 1000 | date:'medium'}}</td>
 									<td>{{transaction.transaction_header.expiration}}</td>
 									<td>{{transaction.actions.length}}</td>
