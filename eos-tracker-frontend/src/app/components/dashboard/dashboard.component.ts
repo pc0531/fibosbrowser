@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import 'rxjs/add/operator/takeWhile';
 import { environment } from '../../../environments/environment';
-import * as EOS from 'eosjs'
+// const Eos = require('eosjs');
+import Eos from 'eosjs';
 import { async } from 'q';
 
 @Component({
@@ -32,6 +33,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    var config = {
+      "chainId": "6aa7bd33b6b45192465afa3553dedb531acaaff8928cf64b70bd4c5e49b7ec6a",
+      "producer-name": "eosio",
+      "httpEndpoint": "http://ln-rpc.fibos.io:8870",
+    };
+
+    var eos = Eos({
+      chainId: config.chainId,
+      httpEndpoint: config.httpEndpoint,
+      logger: {
+        log: null,
+        error: null
+      }
+    });
+
+
     // let config = {
     //   chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
     //   httpEndpoint: 'http://api.mainnet.eospace.io',
@@ -98,33 +116,49 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //       this.transactions = data;
     //     });
     //   });
-    TimerObservable.create(0, 2000)
-      .takeWhile(() => this.alive)
-      .subscribe(() => {
+    // TimerObservable.create(0, 2000)
+    //   .takeWhile(() => this.alive)
+    //   .subscribe(() => {
 
-        this.http.get(environment.apiUrl + '/stats').subscribe(data => {
-          this.stats = <number[]>data;
-        });
-      });
-    TimerObservable.create(0, 2000)
-      .takeWhile(() => this.alive)
-      .subscribe(() => {
+    //     this.http.get(environment.apiUrl + '/stats').subscribe(data => {
+    //       this.stats = <number[]>data;
+    //     });
+    //   });
+    // TimerObservable.create(0, 2000)
+    //   .takeWhile(() => this.alive)
+    //   .subscribe(() => {
 
-        this.http.get(environment.apiUrl + '/producers').subscribe(data => {
-          for (let key in data) {
-            data[key].num = Number(key) + 1;
-          }
-          this.producers = data;
-        });
-      });
+    //     this.http.get(environment.apiUrl + '/producers').subscribe(data => {
+    //       // for (let key in data) {
+    //       //   data[key].num = Number(key) + 1;
+    //       // }
+    //       this.producers = data;
+    //     });
+    //   });
+    // TimerObservable.create(0, 2000)
+    //   .takeWhile(() => this.alive)
+    //   .subscribe(() => {
+    //     this.http.get(environment.blockchainUrl + '/v1/chain/get_info').subscribe(data => {
+    //       this.blocksChain = data;
+    //     });
+    //   });
+
+
     TimerObservable.create(0, 2000)
       .takeWhile(() => this.alive)
       .subscribe(() => {
-        this.http.get(environment.blockchainUrl + '/v1/chain/get_info').subscribe(data => {
+        this.http.get('http://se-rpc.fibos.io:8870/v1/chain/get_info').subscribe(data => {
           this.blocksChain = data;
         });
       });
 
+    TimerObservable.create(0, 1000000000)
+      .takeWhile(() => this.alive)
+      .subscribe(() => {
+        eos.getTableRows(true, 'eosio', 'eosio', 'producers', (err, res) => {
+          this.producers = res.rows;
+        })
+      })
   }
 
   ngOnDestroy() {

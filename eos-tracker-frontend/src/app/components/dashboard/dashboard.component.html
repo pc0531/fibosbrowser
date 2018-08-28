@@ -33,7 +33,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-12 text-center">
-								<div class="medium">{{blocksChain.last_irreversible_block_num}}</div>
+								<div class="medium" *ngIf="blocksChain">{{blocksChain.last_irreversible_block_num}}</div>
 								<div>不可逆区块</div>
 							</div>
 						</div>
@@ -53,7 +53,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-12 text-center">
-								<div class="medium">{{blocksChain.head_block_num}}</div>
+								<div class="medium" *ngIf="blocksChain">{{blocksChain.head_block_num}}</div>
 								<div>最新区块</div>
 							</div>
 						</div>
@@ -74,7 +74,7 @@
 						<div class="row">
 							<div class="col-xs-12 text-center">
 								<div class="medium">最新区块时间</div>
-								<div>{{blocksChain.head_block_time |date:'yyyy-MM-dd hh:mm:ss'}}</div>
+								<div *ngIf="blocksChain">{{blocksChain.head_block_time |date:'yyyy-MM-dd hh:mm:ss'}}</div>
 							</div>
 						</div>
 					</div>
@@ -164,20 +164,17 @@
 								</thead>
 								<tbody>
 									<tr *ngFor="let producer of producers">
-										<td>{{producer.num}}</td>
-										<td>{{producer.owner}}</td>
+										<td>{{producer.unpaid_blocks}}</td>
 										<td>{{producer.owner}}</td>
 										<td>{{producer.vote_rate}}</td>
 										<td>{{producer.total_votes}}</td>
 										<td>{{producer.location}}</td>
 										<td style="position:relative">
 											<span style="opacity:0">{{producer.is_active}}</span>
-											{{ producer.is_active} == 1 ?
-											<div style="position: absolute;top: 36%;width:10px;height:10px;background:#5eba00;border-radius: 50%;">
-											</div> :
-											<div style="position: absolute;top: 36%;width:10px;height:10px;background:black;border-radius: 50%;">
+											<div *ngIf="producer.is_active == 1" style="position: absolute;top: 36%;width:10px;height:10px;background:#5eba00;border-radius: 50%;">
 											</div>
-											}
+											<div *ngIf="producer.is_active != 1" style="position: absolute;top: 36%;width:10px;height:10px;background:black;border-radius: 50%;">
+											</div>
 										</td>
 									</tr>
 								</tbody>
